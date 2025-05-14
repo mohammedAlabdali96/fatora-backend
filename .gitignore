@@ -1,0 +1,25 @@
+# Node
+node_modules/
+npm-debug.log
+.env
+.DS_Store
+
+# Logs
+logs/
+*.log
+log.txt
+
+# Runtime
+pids
+*.pid
+*.seed
+
+# System
+.idea/
+.vscode/
+*.swp
+
+# Output
+dist/
+build/
+coverage/
