@@ -4,12 +4,15 @@ const cors = require('cors')
 require('dotenv').config()
 
 const authRoutes = require('./routes/auth')
+const paymentRoutes = require('./routes/payments')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
 app.use('/api', authRoutes)
+app.use('/api', paymentRoutes)
+
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
