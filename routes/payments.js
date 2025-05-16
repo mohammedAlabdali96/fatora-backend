@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth')
 const express = require('express')
 const Payment = require('../models/Payment')
 const Seller = require('../models/Seller')
@@ -33,5 +34,16 @@ router.post('/payments', async (req, res) => {
     res.status(500).json({ message: 'Server error.' })
   }
 })
+
+// Get all payments for logged-in seller
+router.get('/payments', auth, async (req, res) => {
+    try {
+      const payments = await Payment.find({ sellerId: req.seller.id }).sort({ createdAt: -1 })
+      res.status(200).json(payments)
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ message: 'Server error' })
+    }
+  })
 
 module.exports = router
